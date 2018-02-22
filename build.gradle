@@ -2,6 +2,11 @@
 buildscript {
     ext.kotlin_version = '1.2.21'
     ext.anko_version = '0.10.4'
+
+    ext.hoshino_version = '1.0.2'
+    ext.ir_version = '1.1'
+    ext.ke_version = '1.0.1'
+
     repositories {
         jcenter()
     }
@@ -15,5 +20,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+
+        maven { url 'https://jitpack.io' }
     }
 }

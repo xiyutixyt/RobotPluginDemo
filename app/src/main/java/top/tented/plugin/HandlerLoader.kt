@@ -2,6 +2,7 @@ package top.tented.plugin
 
 import com.saki.aidl.PluginMsg
 import top.tented.plugin.handler.Demo
+import top.tented.utils.matches
 
 /**
  * HandlerLoader
@@ -17,9 +18,9 @@ object HandlerLoader {
     fun load(msg : PluginMsg) {
         handlerList.forEach {
             it.handlerList.forEach {
-                if(msg.msg.matches(it.regex)) {
+                msg.msg.matches(it.regex)?.run {
                     msg.clearMsg()
-                    it.handle(msg)
+                    it.handle(msg, this)
                     msg.send()
                     if(! it.`continue`) return
                 }
