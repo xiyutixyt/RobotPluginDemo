@@ -14,7 +14,9 @@ class PluginMsg : Parcelable {
         Xml("xml"),
         Json("json"),
         At("at"),
-        Image("img")
+        Image("img"),
+        Group("troop"),
+        Member("member")
     }
 
     enum class Type(val type : Int) {
@@ -28,7 +30,7 @@ class PluginMsg : Parcelable {
         GroupInfo(6),
         GroupMember(7),
         Favourite(8),
-        MemberCard(9),
+        Rename(9),
         MemberShutUp(10),
         GroupShutUp(11),
         RemoveMember(12),
@@ -47,27 +49,6 @@ class PluginMsg : Parcelable {
             override fun createFromParcel(source : Parcel) : PluginMsg = PluginMsg(source)
             override fun newArray(size : Int) : Array<PluginMsg?> = arrayOfNulls(size)
         }
-
-        const val TYPE_DATA = -1 //日志消息
-        const val TYPE_GROUP_MSG = 0 //群消息
-        const val TYPE_BYDDY_MSG = 1 //好友消息
-        const val TYPE_DIS_MSG = 2 //讨论组消息
-        const val TYPE_SYS_MSG = 3 //系统消息
-        const val TYPE_SESS_MSG = 4 //临时消息
-        const val TYPE_GET_GROUP_LIST = 5 //群列表
-        const val TYPE_GET_GROUP_INFO = 6 //群信息
-        const val TYPE_GET_GROUP_MEBMER = 7 //群成员
-        const val TYPE_FAVORITE = 8 //点赞
-        const val TYPE_SET_MEMBER_CARD = 9 //设置群名片
-        const val TYPE_SET_MEMBER_SHUTUP = 10 //成员禁言
-        const val TYPE_SET_GROUP_SHUTUP = 11 //群禁言
-        const val TYPE_DELETE_MEMBER = 12 //删除群成员
-        const val TYPE_AGREE_JOIN = 13 //同意入群
-        const val TYPE_GET_MEMBER_INFO = 14 //成员信息
-        const val TYPE_GET_LOGIN_ACCOUNT = 15 //获取机器人QQ
-        const val TYPE_MEMBER_DELETE = 16 // 退群
-        const val TYPE_ADMIN_CHANGE = 17 // 管理员变更
-        const val TYPE_STOP = 18 //插件停止（重载）
     }
 
     @JvmField var type : Type = Type.Group
