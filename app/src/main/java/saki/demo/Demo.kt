@@ -17,32 +17,11 @@ import top.tented.plugin.R
 
 class Demo : Service() {
     companion object {
+        var connection: SQConnection? = null
+
         private const val JUMP = true         //是否支持界面跳转
         private const val AUTHOR = "星野天忆"     //插件作者
         private const val INFO = "使用Kotlin语言制作插件"     //插件描述
-
-        /**
-         * 向v8控制台发送一条消息
-         * @param obj 要发送的消息
-         * @return 传入的对象
-         */
-        fun debug(obj: Any?): Any? {
-            PluginMsg.send(PluginMsg.TYPE_DEBUG, message = obj.toString())
-            return obj
-        }
-
-        private var connection: SQConnection? = null
-
-        /**
-         * 对主程序发送一个消息包
-         * @param msg 消息包内容
-         * @return 对于需要返回的消息包如:【获取群列表】时获得返回，否则为null
-         * @throws RemoteException
-         */
-        @Throws(RemoteException::class)
-        fun send(msg: PluginMsg): PluginMsg? =
-                if (connection != null && connection!!.service != null) connection!!.service!!.handlerMessage(msg)
-                else null
     }
 
     //AIDL接口实现
@@ -54,14 +33,14 @@ class Demo : Service() {
          */
         @Throws(RemoteException::class)
         override fun onMessageHandler(msg: PluginMsg) {
-            if (msg.type == 18) //主程序请求停止插件
+            if (msg.type == PluginMsg.Type.Reload) //主程序请求停止插件
             {
                 unbindService(connection)//解绑
                 stopSelf()//停止插件
                 return
             }
 
-            if (msg.type == PluginMsg.TYPE_GROUP_MSG) HandlerLoader.load(msg)
+            if (msg.type == PluginMsg.Type.Group) HandlerLoader.load(msg)
         }
 
         /**
