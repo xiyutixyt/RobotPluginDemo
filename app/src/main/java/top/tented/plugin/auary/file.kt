@@ -9,17 +9,21 @@ import java.io.File
  */
 
 object file {
-    fun getSD(path: String): String? {
-        val file = Environment.getExternalStorageDirectory()
-        if (file != null) {
-            val sdpath = file.toString() + path
-            val file2 = File(sdpath)
-            if (!file2.exists()) {
-                file2.parentFile.mkdirs()
-            }
-
-            return sdpath
+    fun getSD(path: String) = Environment.getExternalStorageDirectory()?.run {
+        (toString() + path).apply {
+            File(this).takeIf { ! it.exists() }?.parentFile?.mkdirs()
         }
-        return null
     }
+//        val file = Environment.getExternalStorageDirectory()
+//        if (file != null) {
+//            val sdpath = file.toString() + path
+//            val file2 = File(sdpath)
+//            if (!file2.exists()) {
+//                file2.parentFile.mkdirs()
+//            }
+//
+//            return sdpath
+//        }
+//        return null
+//    }
 }

@@ -10,7 +10,10 @@ import top.tented.utils.matches
  * Created by hoshino on 18-2-18 下午6:28.
  */
 object HandlerLoader {
-    val handlerArray = arrayOf(Main,Robo)
+    val handlerArray = arrayOf(
+            Main,
+            Robo
+    )       //这里最好换行
 
     val handlerList = handlerArray.toList()
 
