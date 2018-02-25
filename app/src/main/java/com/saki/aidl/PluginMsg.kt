@@ -7,6 +7,9 @@ import android.os.Parcel
 import android.os.Parcelable
 import android.os.RemoteException
 import saki.demo.Demo
+import top.tented.util.Group
+import top.tented.util.Member
+import top.tented.utils.get
 
 class PluginMsg : Parcelable {
     enum class Key(val key : String) {
@@ -66,7 +69,11 @@ class PluginMsg : Parcelable {
         set(value) { group = value }
     var data = HashMap<String, ArrayList<String>>()
     val textMsg : String get() = buildString { data["msg"]?.forEach { append(it) } }
+
+
     lateinit var msg : String
+    lateinit var ats : List<Member>
+    val member by lazy { Member(Group(group), uin, uinName) }
 
     constructor(type : Type = Type.Group) {
         this.type = type
@@ -104,6 +111,15 @@ class PluginMsg : Parcelable {
         source.readMap(data, javaClass.classLoader)
 
         msg = textMsg
+        ats = data[Key.At.key]?.map {
+            it.indexOf('@').run {
+                Member(
+                        Group(group),
+                        it[0, this].toLong(),
+                        it.substring(this + 1)
+                )
+            }
+        } ?: emptyList()
     }
 
     fun clearMsg() {

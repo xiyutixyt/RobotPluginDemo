@@ -156,7 +156,6 @@
     <orderEntry type="library" name="com.android.support:support-core-utils-26.1.0" level="project" />
     <orderEntry type="library" name="com.android.support.constraint:constraint-layout-1.0.2" level="project" />
     <orderEntry type="library" name="com.android.support:support-core-ui-26.1.0" level="project" />
-    <orderEntry type="library" name="com.github.HoshinoTented.MainLibrary:KotlinExtra:1.0.2-KE-1.0.1@jar" level="project" />
     <orderEntry type="library" name="org.jetbrains.anko:anko-support-v4:0.10.4@jar" level="project" />
     <orderEntry type="library" name="org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.21@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-compat-26.1.0" level="project" />
@@ -169,6 +168,7 @@
     <orderEntry type="library" name="com.android.support:design-26.1.0" level="project" />
     <orderEntry type="library" name="com.android.support:transition-26.1.0" level="project" />
     <orderEntry type="library" name="org.jetbrains.anko:anko-support-v4-commons:0.10.4@jar" level="project" />
+    <orderEntry type="library" name="com.github.HoshinoTented.MainLibrary:KotlinExtra:1.0.3-KE-1.0.3@jar" level="project" />
     <orderEntry type="library" name="org.jetbrains.kotlin:kotlin-stdlib-jre7:1.2.21@jar" level="project" />
   </component>
 </module>
