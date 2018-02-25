@@ -19,5 +19,7 @@ class Group(val id : Long) {
      */
     fun shutUp(mod : Boolean) = sendWith(PluginMsg.Type.GroupShutUp) { value = (!mod).toInt() }
 
+    override fun equals(other : Any?) = (other as? Group)?.hashCode() == hashCode()
+    override fun hashCode() = id.hashCode()
     override fun toString() = id.toString()
 }

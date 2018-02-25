@@ -16,5 +16,8 @@ class Member(val group : Group, val id : Long, val name : String?) {
     fun remove() = sendWith(PluginMsg.Type.RemoveMember)
     fun rename(newName : String) = sendWith(PluginMsg.Type.Rename) { title = newName }
     fun favourite(times : Int) = sendWith(PluginMsg.Type.Favourite) { if (times in 1..10) value = times }
+
+    override fun equals(other : Any?) = (other as? Member)?.hashCode() == hashCode()
+    override fun hashCode() = group.hashCode() * 31 + id.hashCode()
     override fun toString() = "$name($id)"
 }
