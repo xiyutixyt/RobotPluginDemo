@@ -68,26 +68,15 @@ class PluginMsg : Parcelable {
     val textMsg : String get() = buildString { data["msg"]?.forEach { append(it) } }
     lateinit var msg : String
 
-    constructor()
+    constructor(type : Type = Type.Group) {
+        this.type = type
+    }
+
     constructor(source : Parcel) {
         readFromParcel(source)
     }
 
     override fun describeContents() : Int = 0
-
-    fun clearMsg() {
-        data = HashMap()
-    }
-
-    fun addMsg(key : Key, msg : String) =
-        (data["index"] ?: ArrayList<String>().apply { data["index"] = this }).run {
-            add(key.key)
-            (data["key"] ?: ArrayList<String>().apply { data[key.key] = this }).run { add(msg) }
-        }
-
-    @Throws(RemoteException::class)
-    fun send() = Demo.connection?.takeIf { it.service != null }?.run { service?.handlerMessage(this@PluginMsg) }
-
 
     override fun writeToParcel(dest : Parcel, flags : Int) {
         dest.writeInt(type.type)
@@ -116,4 +105,18 @@ class PluginMsg : Parcelable {
 
         msg = textMsg
     }
+
+    fun clearMsg() {
+        data = HashMap()
+    }
+
+    fun addMsg(key : Key, msg : String) =
+            (data["index"] ?: ArrayList<String>().apply { data["index"] = this }).run {
+                add(key.key)
+                (data["key"] ?: ArrayList<String>().apply { data[key.key] = this }).run { add(msg) }
+            }
+
+    @Throws(RemoteException::class)
+    fun send() = Demo.connection?.service?.handlerMessage(this@PluginMsg)
+
 }

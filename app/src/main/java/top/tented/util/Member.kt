@@ -7,30 +7,14 @@ import com.saki.aidl.PluginMsg
  * Created by hoshino on 18-2-25 上午4:47.
  */
 class Member(val group : Group, val id : Long, val name : String?) {
-    fun pluginMsg(apply : PluginMsg.() -> Unit) = PluginMsg().apply {
-        group = this@Member.group.id
+    fun sendWith(type : PluginMsg.Type, apply : PluginMsg.() -> Unit = {}) = group.sendWith(type) {
         uin = this@Member.id
         apply()
     }
 
-    fun shutUp(time : Int) = pluginMsg {
-        type = PluginMsg.Type.MemberShutUp
-        value = time * 60
-    }.send()
-
-    fun remove() = pluginMsg {
-        type = PluginMsg.Type.RemoveMember
-    }.send()
-
-    fun rename(newName : String) = pluginMsg {
-        type = PluginMsg.Type.Rename
-        title = newName
-    }.send()
-
-    fun favourite(times : Int) = pluginMsg {
-        if (times in 1..10) {
-            type = PluginMsg.Type.Favourite
-            value = times
-        }
-    }.send()
+    fun shutUp(time : Int) = sendWith(PluginMsg.Type.MemberShutUp) { value = time * 60 }
+    fun remove() = sendWith(PluginMsg.Type.RemoveMember)
+    fun rename(newName : String) = sendWith(PluginMsg.Type.Rename) { title = newName }
+    fun favourite(times : Int) = sendWith(PluginMsg.Type.Favourite) { if (times in 1..10) value = times }
+    override fun toString() = "$name($id)"
 }

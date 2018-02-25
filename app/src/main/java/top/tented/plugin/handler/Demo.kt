@@ -11,7 +11,9 @@ object Demo : Handler("插件测试", "Test") {
     init {      //所有的消息处理器在构造器里添加
         //添加消息处理器
         message("测试") {
-            addMsg(PluginMsg.Key.Message, "测试失败")
+            //it是匹配完毕的Matcher对象
+            //主要是不用辛苦的去substring
+            addMsg(PluginMsg.Key.Message, "${it.group()}失败")
         }
 
         //默认消息处理器的continue值为false

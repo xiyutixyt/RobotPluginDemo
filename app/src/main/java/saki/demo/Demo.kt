@@ -17,7 +17,7 @@ import top.tented.plugin.R
 
 class Demo : Service() {
     companion object {
-        var connection: SQConnection? = null
+        var connection : SQConnection? = null
 
         private const val JUMP = true         //是否支持界面跳转
         private const val AUTHOR = "星野天忆"     //插件作者
@@ -32,11 +32,10 @@ class Demo : Service() {
          * @param msg 消息包体
          */
         @Throws(RemoteException::class)
-        override fun onMessageHandler(msg: PluginMsg) {
-            if (msg.type == PluginMsg.Type.Reload) //主程序请求停止插件
-            {
-                unbindService(connection)//解绑
-                stopSelf()//停止插件
+        override fun onMessageHandler(msg : PluginMsg) {
+            if (msg.type == PluginMsg.Type.Reload) {    //主程序请求停止插件
+                unbindService(connection) //解绑
+                stopSelf() //停止插件
                 return
             }
 
@@ -47,25 +46,25 @@ class Demo : Service() {
          * 界面跳转开关，插件无界面请返回false
          */
         @Throws(RemoteException::class)
-        override fun jump(): Boolean = Demo.JUMP
+        override fun jump() : Boolean = Demo.JUMP
 
         /**
          * 插件相关简要信息说明
          */
         @Throws(RemoteException::class)
-        override fun info(): String = Demo.INFO
+        override fun info() : String = Demo.INFO
 
         /**
          * 插件作者信息
          */
         @Throws(RemoteException::class)
-        override fun author(): String = Demo.AUTHOR
+        override fun author() : String = Demo.AUTHOR
 
         /**
          * 插件图标
          */
         @Throws(RemoteException::class)
-        override fun icon(): ByteArray {
+        override fun icon() : ByteArray {
             val bit = BitmapFactory.decodeResource(resources, R.drawable.ic_launcher)
             val out = ByteArrayOutputStream()
             bit.compress(Bitmap.CompressFormat.PNG, 100, out)
@@ -78,7 +77,7 @@ class Demo : Service() {
      * @param intent
      * @return 返回AIDL接口
      */
-    override fun onBind(intent: Intent): IBinder? {
+    override fun onBind(intent : Intent) : IBinder? {
         println("OnBind")
         //回绑
         val i = Intent("com.setqq.v8.service")
