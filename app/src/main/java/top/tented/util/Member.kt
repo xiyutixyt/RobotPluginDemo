@@ -1,12 +1,28 @@
 package top.tented.util
 
 import com.saki.aidl.PluginMsg
+import top.tented.file.Config
 
 /**
  * Member
  * Created by hoshino on 18-2-25 上午4:47.
  */
 class Member(val group : Group, val id : Long, val name : String?) {
+
+    //群成员的金钱
+    var money
+        get() = group.moneyConfig[id.toString()]?.toLong() ?: 0L
+        set(value) {
+            group.moneyConfig[id.toString()] = value
+        }
+
+    //是否为机器人管理员
+    var isMaster
+        get() = group.masterConfig[id.toString()] == "true"
+        set(value) {
+            group.masterConfig[id.toString()] = value
+        }
+
     fun sendWith(type : PluginMsg.Type, apply : PluginMsg.() -> Unit = {}) = group.sendWith(type) {
         uin = this@Member.id
         apply()

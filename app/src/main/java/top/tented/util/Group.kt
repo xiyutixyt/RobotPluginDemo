@@ -1,6 +1,7 @@
 package top.tented.util
 
 import com.saki.aidl.PluginMsg
+import top.tented.file.Config
 import top.tented.utils.toInt
 
 /**
@@ -8,6 +9,9 @@ import top.tented.utils.toInt
  * Created by hoshino on 18-2-25 上午4:48.
  */
 class Group(val id : Long) {
+    val masterConfig by lazy { Config.extraConfig("$id/Master") }
+    val moneyConfig by lazy { Config.extraConfig("$id/Money") }
+
     val members get() = sendWith(PluginMsg.Type.GroupMember)?.data?.get(PluginMsg.Key.Member.key)
     val groups get() = sendWith(PluginMsg.Type.GroupList)?.data?.get(PluginMsg.Key.Group.key)
 
