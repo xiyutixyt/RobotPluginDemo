@@ -34,4 +34,5 @@ dependencies {
 
     implementation "com.github.HoshinoTented.MainLibrary:KotlinExtra:1.0.3"
     implementation "com.github.HoshinoTented.MainLibrary:File:1.0.3"
+    implementation "com.github.HoshinoTented.MainLibrary:InternetRequest:1.0.3"
 }

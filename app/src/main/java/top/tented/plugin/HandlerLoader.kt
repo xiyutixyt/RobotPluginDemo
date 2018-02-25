@@ -1,7 +1,8 @@
 package top.tented.plugin
 
 import com.saki.aidl.PluginMsg
-import top.tented.plugin.handler.Demo
+import top.tented.plugin.handler.Main
+import top.tented.plugin.handler.Robo
 import top.tented.utils.matches
 
 /**
@@ -9,9 +10,7 @@ import top.tented.utils.matches
  * Created by hoshino on 18-2-18 下午6:28.
  */
 object HandlerLoader {
-    val handlerArray = arrayOf(
-            Demo
-    )
+    val handlerArray = arrayOf(Main,Robo)
 
     val handlerList = handlerArray.toList()
 

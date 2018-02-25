@@ -40,6 +40,11 @@ class Demo : Service() {
             }
 
             if (msg.type == PluginMsg.Type.Group) HandlerLoader.load(msg)
+
+            //测试
+            top.tented.internet.Request("https://www.baidu.com").doDownLoad("")
+            top.tented.internet.Request("https://www.baidu.com").doGet()
+            top.tented.internet.Request("https://www.baidu.com").doPost("")
         }
 
         /**
