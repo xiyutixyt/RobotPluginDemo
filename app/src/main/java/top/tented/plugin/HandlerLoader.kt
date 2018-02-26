@@ -1,8 +1,7 @@
 package top.tented.plugin
 
 import com.saki.aidl.PluginMsg
-import top.tented.plugin.handler.Main
-import top.tented.plugin.handler.Robo
+import top.tented.plugin.handler.*
 import top.tented.utils.matches
 
 /**
@@ -12,6 +11,7 @@ import top.tented.utils.matches
 object HandlerLoader {
     val handlerArray = arrayOf(
             Main,
+            Money,
             Robo
     )       //这里最好换行
 

@@ -26,7 +26,7 @@ object Robo : Handler("基础服务", "1.0") {
         }
         message("圆周率 .+") {
             val hb = msg.split(" ")[1]
-           addMsg(PluginMsg.Key.Message,"在精度为${hb}的情况下圆周率为${dade.jishuPI(hb.toDouble()).toString()}")
+           addMsg(PluginMsg.Key.Message,"在精度为${hb}的情况下圆周率为${Dada.operatePI(hb.toDouble()).toString()}")
         }
     }
 }

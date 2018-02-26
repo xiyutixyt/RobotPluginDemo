@@ -122,6 +122,14 @@ class PluginMsg : Parcelable {
         } ?: emptyList()
     }
 
+    fun at(member : Member) = member.run {
+        PluginMsg(Type.Group).apply {
+            group = this@run.group.id
+            uin = this@run.id
+            addMsg(Key.At, "$uin@${member.name}")
+        }.send()
+    }
+
     fun clearMsg() {
         data = HashMap()
     }
