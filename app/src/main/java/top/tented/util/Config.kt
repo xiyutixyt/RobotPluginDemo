@@ -13,3 +13,7 @@ val rootPath = android.os.Environment.getExternalStorageDirectory().toString() +
  * 获取rootPath下的文件Config对象
  */
 fun Config.Companion.extraConfig( extra : String ) = Config(rootPath + extra + ".properties")
+
+object GlobalConfig {
+    operator fun get(key : String) = Config.extraConfig("config")[key]
+}

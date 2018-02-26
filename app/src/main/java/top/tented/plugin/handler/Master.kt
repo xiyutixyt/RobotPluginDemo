@@ -11,8 +11,10 @@ object Master : Handler("主人系统", "1.0") {
     val menu =
             """
                 |$name
+                |${Main.splitLine}
                 |添加主人@
                 |删除主人@
+                |${Main.splitLine}
                 |你%s是主人
             """.trimMargin()
 
