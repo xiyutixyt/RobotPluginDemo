@@ -10,17 +10,15 @@ import java.util.Date
 object Dada {
 
     val timePeriod: String
-        get() {
-            var period = ""
-            val now = currentDateTime
-            val hour = now.hours
-            if (hour in 0..5) period = "凌晨"     //可以使用 in
-            if (hour in 6..7) period = "早上"
-            if (hour in 8..11) period = "上午"
-            if (hour in 12..17) period = "下午"
-            if (hour >= 18) period = "晚上"
-            return period
+        get() = when(currentDateTime.hours) {
+            in 0..5 -> "凌晨"
+            in 6..7 -> "早上"
+            in 8..11 -> "上午"
+            in 12..17 -> "下午"
+
+            else -> "晚上"
         }
+
     val currentDateTime: Date get() = java.util.Calendar.getInstance().time
     fun operatePI(z: Double): Double {
         var sum = 2.0
