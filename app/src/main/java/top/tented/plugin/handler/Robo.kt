@@ -2,9 +2,7 @@ package top.tented.plugin.handler
 
 import com.saki.aidl.PluginMsg
 import top.tented.plugin.Handler
-import top.tented.plugin.auary.Award
-import top.tented.plugin.auary.Matv
-import top.tented.plugin.auary.file
+import top.tented.plugin.auary.*
 import java.io.File
 
 
@@ -13,7 +11,7 @@ import java.io.File
  */
 object Robo : Handler("基础服务", "1.0") {
     init {
-        val path:String = file.getSD("WOKT")!!
+        val path = file.getSD("WOKT")!!
         message("抽奖") {
             val awards = listOf(
                 Award("通用货币-60000", 0.1f, 100),
@@ -24,10 +22,11 @@ object Robo : Handler("基础服务", "1.0") {
             )
             val hb = Matv.lottery(awards)!!.id.split("-")[1].toInt()
             File("$path/基础数据/${this.group}/${this.uin}/通用货币.txt").writeText(((File("$path/基础数据/${this.group}/${this.uin}/通用货币.txt").readText()).toInt()+hb).toString())
-                    addMsg(PluginMsg.Key.Message,"恭喜您，抽到了："+ Matv.lottery(awards)!!.id)
+                    addMsg(PluginMsg.Key.Message,"恭喜您，抽到了：${Matv.lottery(awards)!!.id}")
         }
-        message("根式 [0-9]+") {
-            val fd = Math.sqrt(10.0)
+        message("圆周率 .+") {
+            val hb = msg.split(" ")[1]
+           addMsg(PluginMsg.Key.Message,"在精度为${hb}的情况下圆周率为${dade.jishuPI(hb.toDouble()).toString()}")
         }
     }
 }
