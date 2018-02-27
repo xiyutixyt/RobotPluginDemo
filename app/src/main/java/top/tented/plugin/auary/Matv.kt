@@ -10,7 +10,6 @@ import java.util.Random
 
 object Matv {
     fun lottery(awards: List<Award>): Award? {
-
         var totalPro = 0f
         val proSection = ArrayList<Float>()
         proSection.add(0f)
