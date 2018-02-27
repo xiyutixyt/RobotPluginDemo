@@ -26,7 +26,7 @@ object Master : Handler("主人系统", "1.0") {
         message("主人列表") {
             addMsg(
                     PluginMsg.Key.Message,
-                    member.group.masters.joinToString("\n") { it.id.toString() }
+                    member.group.masters.joinToString("\n", prefix = "主人列表\n${Main.splitLine}") { it.id.toString() }
                     //joinToString: 把一个集合/数组转化为字符串
                     //separator: 分隔符
                     //prefix/postfix: 前缀和后缀

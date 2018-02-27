@@ -2,7 +2,7 @@ package top.tented.plugin.handler
 
 import com.saki.aidl.PluginMsg
 import top.tented.plugin.Handler
-import top.tented.plugin.auary.*
+import top.tented.util.auary.*
 import java.io.File
 
 

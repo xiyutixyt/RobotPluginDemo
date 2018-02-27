@@ -1,4 +1,4 @@
-package top.tented.plugin.auary
+package top.tented.util.auary
 
 /**
  * Award
