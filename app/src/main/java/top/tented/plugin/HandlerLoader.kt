@@ -12,7 +12,8 @@ object HandlerLoader {
     val handlerArray = arrayOf(
             Main,
             Money,
-            Robo
+            Robo,
+            Master
     )       //这里最好换行
 
     val handlerList = handlerArray.toList()

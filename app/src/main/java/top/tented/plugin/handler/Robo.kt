@@ -21,12 +21,14 @@ object Robo : Handler("基础服务", "1.0") {
                 Award("通用货币-35000", 0.2f, 100)
             )
             val hb = Matv.lottery(awards)!!.id.split("-")[1].toInt()
-            File("$path/基础数据/${this.group}/${this.uin}/通用货币.txt").writeText(((File("$path/基础数据/${this.group}/${this.uin}/通用货币.txt").readText()).toInt()+hb).toString())
-                    addMsg(PluginMsg.Key.Message,"恭喜您，抽到了：${Matv.lottery(awards)!!.id}")
+            val moneyPath = "$path/基础数据/${this.group}/${this.uin}/通用货币.txt"
+
+            File(moneyPath).writeText((File(moneyPath).readText().toInt() + hb).toString())
+            addMsg(PluginMsg.Key.Message,"恭喜您，抽到了：${Matv.lottery(awards)!!.id}")
         }
-        message("圆周率 .+") {
-            val hb = msg.split(" ")[1]
-           addMsg(PluginMsg.Key.Message,"在精度为${hb}的情况下圆周率为${Dada.operatePI(hb.toDouble()).toString()}")
+        message("圆周率 (.+)") {
+            val precision = it.group(1).toDouble()
+           addMsg(PluginMsg.Key.Message,"在精度为${precision}的情况下圆周率为${Dada.operatePI(precision)}")
         }
     }
 }
