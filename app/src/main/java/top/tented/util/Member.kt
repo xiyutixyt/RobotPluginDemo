@@ -20,7 +20,9 @@ class Member(val group : Group, val id : Long, val name : String?) {
     var isMaster
         get() = group.masterConfig[id.toString()] == "true"
         set(value) {
-            group.masterConfig[id.toString()] = value
+            group.masterConfig.let {
+                if (value) it[id.toString()] = value else it.remove(id.toString())      //如果是添加就赋值, 否则直接删除, 这里是为了Group的masters而这样写的
+            }
         }
 
     fun sendWith(type : PluginMsg.Type, apply : PluginMsg.() -> Unit = {}) = group.sendWith(type) {

@@ -32,7 +32,6 @@ dependencies {
     implementation "org.jetbrains.anko:anko-appcompat-v7:$anko_version"
     implementation "org.jetbrains.anko:anko-design:$anko_version"
 
-    implementation "com.github.HoshinoTented.MainLibrary:KotlinExtra:1.0.3"
-    implementation "com.github.HoshinoTented.MainLibrary:File:1.0.3"
-    implementation "com.github.HoshinoTented.MainLibrary:InternetRequest:1.0.3"
+//    implementation "com.github.HoshinoTented.MainLibrary:File:$hoshino_version"
+    implementation "com.github.HoshinoTented:MainLibrary:$hoshino_version"
 }
