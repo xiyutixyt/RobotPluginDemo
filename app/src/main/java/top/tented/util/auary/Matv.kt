@@ -1,6 +1,5 @@
-package top.tented.plugin.auary
+package top.tented.util.auary
 
-import top.tented.plugin.auary.Award
 import java.util.ArrayList
 import java.util.Random
 
@@ -10,12 +9,11 @@ import java.util.Random
 
 object Matv {
     fun lottery(awards: List<Award>): Award? {
-
         var totalPro = 0f
         val proSection = ArrayList<Float>()
         proSection.add(0f)
         for (award in awards) {
-            totalPro += award.probability * 10f * award.count.toFloat()
+            totalPro += award.probability * 10f * award.count
             proSection.add(totalPro)
         }
         val random = Random()

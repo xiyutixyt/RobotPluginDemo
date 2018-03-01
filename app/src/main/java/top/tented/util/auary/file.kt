@@ -1,4 +1,4 @@
-package top.tented.plugin.auary
+package top.tented.util.auary
 
 import android.os.Environment
 
@@ -9,8 +9,8 @@ import java.io.File
  */
 
 object file {
-    fun getSD(path: String) = Environment.getExternalStorageDirectory()?.run {
-        (toString() + path).apply {
+    fun getSD(path: String) = Environment.getExternalStorageDirectory()?.run {          //run: 把前面的对象作为this
+        (toString() + path).apply {         //apply: 把前面的对象作为this, 然后返回这个对象
             File(this).takeIf { ! it.exists() }?.parentFile?.mkdirs()
         }
     }
