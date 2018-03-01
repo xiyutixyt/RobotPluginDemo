@@ -18,8 +18,8 @@ object sql {
     fun sql(sql: String) {
 
         Class.forName("com.mysql.jdbc.Driver")
-        val jdbc = "jdbc:mysql://127.0.0.1:3306/mydb?characterEncoding=GBK"
-        val conn = DriverManager.getConnection(jdbc, "root", "")
+        val jdbc = "jdbc:mysql://localhost:3306/plugeacu?characterEncoding=GBK"
+        val conn = DriverManager.getConnection(jdbc, "plugeacu", "lbCD52ulYC")
         val state = conn.createStatement()
         state.executeUpdate(sql)
 
