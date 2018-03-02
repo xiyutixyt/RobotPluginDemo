@@ -20,7 +20,9 @@ object sql {
         Class.forName("com.mysql.jdbc.Driver")
         val jdbc = "jdbc:mysql://localhost:3306/plugeacu?characterEncoding=GBK"
         val conn = DriverManager.getConnection(jdbc, "plugeacu", "VHY-f7r-u9Y-GQz")
+
         val state = conn.createStatement()
+
         state.executeUpdate(sql)
 
         conn.close()

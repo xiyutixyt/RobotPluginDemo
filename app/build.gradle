@@ -34,4 +34,5 @@ dependencies {
 
 //    implementation "com.github.HoshinoTented.MainLibrary:File:$hoshino_version"
     implementation "com.github.HoshinoTented:MainLibrary:$hoshino_version"
+    testImplementation 'junit:junit:4.12'
 }
